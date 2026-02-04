@@ -1,22 +1,26 @@
-import { Link } from "react-router-dom"
-import { Button } from "@/components/ui/button"
+import { HeroCarousel } from "@/components/home/hero-carousel"
+import { CategoriesGrid } from "@/components/home/categories-grid"
+import { FeaturedProductsGrid } from "@/components/home/featured-products-grid"
+import { PromoBanners } from "@/components/home/promo-banners"
+import { NewArrivalsCarousel } from "@/components/home/new-arrivals-carousel"
+import { NewsletterSection } from "@/components/home/newsletter-section"
 
 export default function HomePage() {
   return (
-    <div className="mx-auto max-w-7xl px-4 py-12">
-      <div className="text-center">
-        <h1 className="text-4xl font-bold tracking-tight">
-          Welcome to ShopApp
-        </h1>
-        <p className="mt-4 text-lg text-muted-foreground">
-          Discover amazing products at great prices.
-        </p>
-        <div className="mt-8">
-          <Button asChild>
-            <Link to="/shop">Browse Shop</Link>
-          </Button>
+    <div>
+      <HeroCarousel />
+      <CategoriesGrid />
+      <FeaturedProductsGrid />
+
+      {/* Promo banners with container */}
+      <section className="px-4 pb-16">
+        <div className="mx-auto max-w-7xl">
+          <PromoBanners />
         </div>
-      </div>
+      </section>
+
+      <NewArrivalsCarousel />
+      <NewsletterSection />
     </div>
   )
 }

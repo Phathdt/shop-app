@@ -6,9 +6,11 @@ import {
   Logout01Icon,
   DashboardSquare01Icon,
   HeartCheckIcon,
+  Search01Icon,
 } from "@hugeicons/core-free-icons"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
+import { Input } from "@/components/ui/input"
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -24,25 +26,31 @@ export function Header() {
 
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-      <div className="mx-auto flex h-14 max-w-7xl items-center justify-between px-4">
+      {/* Top bar: logo, search, action icons */}
+      <div className="mx-auto flex h-14 max-w-7xl items-center justify-between gap-4 px-4">
         {/* Logo */}
-        <Link to="/" className="text-lg font-bold tracking-tight">
+        <Link to="/" className="shrink-0 text-lg font-bold tracking-tight">
           ShopApp
         </Link>
 
-        {/* Nav */}
-        <Navbar className="hidden md:flex" />
+        {/* Search bar - hidden on mobile */}
+        <div className="relative hidden flex-1 md:block md:max-w-md">
+          <HugeiconsIcon
+            icon={Search01Icon}
+            className="absolute left-2.5 top-1/2 size-4 -translate-y-1/2 text-muted-foreground"
+          />
+          <Input
+            type="search"
+            placeholder="Search products..."
+            className="pl-9"
+          />
+        </div>
 
-        {/* Actions */}
-        <div className="flex items-center gap-2">
-          {/* Cart */}
-          <Button variant="ghost" size="icon" asChild>
-            <Link to="/cart" className="relative">
-              <HugeiconsIcon icon={ShoppingCart01Icon} className="size-5" />
-              <Badge className="absolute -top-1 -right-1 size-4 justify-center p-0 text-[10px]">
-                0
-              </Badge>
-            </Link>
+        {/* Action icons */}
+        <div className="flex items-center gap-1">
+          {/* Mobile search toggle */}
+          <Button variant="ghost" size="icon" className="md:hidden cursor-pointer">
+            <HugeiconsIcon icon={Search01Icon} className="size-5" />
           </Button>
 
           {/* Wishlist */}
@@ -54,11 +62,21 @@ export function Header() {
             </Button>
           )}
 
-          {/* User */}
+          {/* Cart */}
+          <Button variant="ghost" size="icon" asChild>
+            <Link to="/cart" className="relative">
+              <HugeiconsIcon icon={ShoppingCart01Icon} className="size-5" />
+              <Badge className="absolute -top-1 -right-1 size-4 justify-center p-0 text-[10px]">
+                0
+              </Badge>
+            </Link>
+          </Button>
+
+          {/* User menu */}
           {isAuthenticated ? (
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
-                <Button variant="ghost" size="icon">
+                <Button variant="ghost" size="icon" className="cursor-pointer">
                   <HugeiconsIcon icon={UserIcon} className="size-5" />
                 </Button>
               </DropdownMenuTrigger>
@@ -88,6 +106,13 @@ export function Header() {
               <Link to="/login">Sign In</Link>
             </Button>
           )}
+        </div>
+      </div>
+
+      {/* Navigation menu bar */}
+      <div className="border-t">
+        <div className="mx-auto max-w-7xl px-4">
+          <Navbar className="hidden md:flex" />
         </div>
       </div>
     </header>
