@@ -27,7 +27,7 @@ function ProductCardGrid({ product }: { product: Product }) {
   return (
     <Card className="group/card cursor-pointer gap-0 overflow-hidden py-0 transition-shadow hover:shadow-lg">
       {/* Image container */}
-      <div className="relative aspect-square overflow-hidden bg-muted">
+      <Link to={`/product/${product.slug}`} className="relative block aspect-square overflow-hidden bg-muted">
         <img
           src={product.image}
           alt={product.name}
@@ -62,7 +62,7 @@ function ProductCardGrid({ product }: { product: Product }) {
             Quick View
           </Button>
         </div>
-      </div>
+      </Link>
 
       {/* Content */}
       <CardContent className="space-y-2 p-4">
@@ -119,7 +119,7 @@ function ProductCardList({ product }: { product: Product }) {
   return (
     <Card className="group/card cursor-pointer flex-row gap-0 overflow-hidden py-0 transition-shadow hover:shadow-lg">
       {/* Image */}
-      <div className="relative aspect-square w-48 shrink-0 overflow-hidden bg-muted">
+      <Link to={`/product/${product.slug}`} className="relative block aspect-square w-48 shrink-0 overflow-hidden bg-muted">
         <img
           src={product.image}
           alt={product.name}
@@ -130,7 +130,7 @@ function ProductCardList({ product }: { product: Product }) {
           {product.isSale && <Badge variant="destructive">Sale</Badge>}
           {product.isNew && <Badge>New</Badge>}
         </div>
-      </div>
+      </Link>
 
       {/* Content */}
       <CardContent className="flex flex-1 flex-col justify-between p-4">
