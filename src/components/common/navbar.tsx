@@ -3,8 +3,11 @@ import { cn } from "@/lib/utils"
 
 const navItems = [
   { to: "/", label: "Home", end: true },
-  { to: "/shop", label: "Shop", end: false },
-  { to: "/cart", label: "Cart", end: false },
+  { to: "/shop", label: "All Categories", end: false },
+  { to: "/shop/new-arrivals", label: "New Arrivals", end: false },
+  { to: "/shop/sale", label: "Sale", end: false },
+  { to: "#about", label: "About Us", end: false },
+  { to: "#contact", label: "Contact", end: false },
 ] as const
 
 interface NavbarProps {
